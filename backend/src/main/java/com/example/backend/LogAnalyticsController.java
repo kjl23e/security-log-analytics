@@ -9,7 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/analytics")
-@CrossOrigin(origins = "http://localhost:5173") // Enables React dev server access
+@CrossOrigin(origins = "http://localhost:5173")
 public class LogAnalyticsController {
 
     private final LogAnalyticsService analyticsService;
@@ -21,5 +21,15 @@ public class LogAnalyticsController {
     @GetMapping("/top-threats")
     public List<Map<String, Object>> getTopThreats() {
         return analyticsService.getTopThreatSources();
+    }
+
+    @GetMapping("/action-distribution")
+    public List<Map<String, Object>> getActionDistribution() {
+        return analyticsService.getActionDistribution();
+    }
+
+    @GetMapping("/hourly-spikes")
+    public List<Map<String, Object>> getHourlySpikes() {
+        return analyticsService.getHourlyAttackSpikes();
     }
 }
